@@ -6,6 +6,13 @@ import { Row, Col } from "antd";
 import Pricegraph from "../components/Pricegraph";
 import Swapcomp from "../components/Swapcomp";
 
+import { Card } from 'antd';
+
+const gridStyle = {
+  width: '75%',
+  margin: '0 auto'
+};
+
 class Swap extends React.Component {
     render() {
         return (
@@ -21,10 +28,14 @@ class Swap extends React.Component {
             SWAP
           <Row>
             <Col span={14} style={{background:'#1ac'}}>
+            <Card style={gridStyle}>
               <Pricegraph/>
+              </Card>
             </Col>
-            <Col span={10} style={{background:'#1ccc5b'}}>
+            <Col span={10}>
+            <Card style={gridStyle}>
               <Swapcomp/>
+              </Card>
             </Col>
           </Row>
             
