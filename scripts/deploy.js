@@ -48,6 +48,16 @@ function saveFrontendFiles(token) {
     contractsDir + "/Token.json",
     JSON.stringify(TokenArtifact, null, 2)
   );
+
+  fs.writeFileSync(
+    contractsDir + "/dex.json",
+    JSON.stringify(TokenArtifact, null, 2)
+  );
+
+  fs.writeFileSync(
+    contractsDir + "/srupee.json",
+    JSON.stringify(TokenArtifact, null, 2)
+  );
 }
 
 main()
