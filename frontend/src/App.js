@@ -121,18 +121,15 @@ export class App extends React.Component {
           </Header>
 
           {/* <Routes> */}
-            <Route path="/swap" component={Swap}>
+            <Route exact path="/" component={Swap}>
             </Route>
-            <Route path="/pool" component={Pool}>
+            <Route exact path="/pool" component={Pool}>
             </Route>
-            <Route path="/drupee" component={DRupee}>
+            <Route exact path="/drupee" component={DRupee}>
             </Route>
-            <Route path="/dashboard" component={Dashboard}>
+            <Route exact path="/dashboard" component={Dashboard}>
             </Route>
           {/* </Routes> */}
-
-          
-
 
 
         </Router>

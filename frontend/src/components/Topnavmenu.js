@@ -13,7 +13,7 @@ class Topnavmenu extends React.Component {
             <div>
                 <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['1']}>
                     <Menu.Item key='swap'>
-                        <Link to="/swap">SWAP</Link>
+                        <Link to="/">SWAP</Link>
                     </Menu.Item>
                     <Menu.Item key='pool'>
                         <Link to="/pool">POOL</Link>
