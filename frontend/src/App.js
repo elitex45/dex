@@ -5,19 +5,19 @@ import { ethers } from "ethers";
 
 // We import the contract's artifacts and address here, as we are going to be
 // using them with ethers
-import TokenArtifact from "../contracts/Token.json";
-import contractAddress from "../contracts/contract-address.json";
+import TokenArtifact from "./contracts/Token.json";
+import contractAddress from "./contracts/contract-address.json";
 
 // All the logic of this dapp is contained in the App component.
 // These other components are just presentational ones: they don't have any
 // logic. They just render HTML.
-import { NoWalletDetected } from "./NoWalletDetected";
-import { ConnectWallet } from "./ConnectWallet";
-import { Loading } from "./Loading";
-import { Transfer } from "./Transfer";
-import { TransactionErrorMessage } from "./TransactionErrorMessage";
-import { WaitingForTransactionMessage } from "./WaitingForTransactionMessage";
-import { NoTokensMessage } from "./NoTokensMessage";
+import { NoWalletDetected } from "./components/NoWalletDetected";
+import { ConnectWallet } from "./components/ConnectWallet";
+import { Loading } from "./components/Loading";
+import { Transfer } from "./components/Transfer";
+import { TransactionErrorMessage } from "./components/TransactionErrorMessage";
+import { WaitingForTransactionMessage } from "./components/WaitingForTransactionMessage";
+import { NoTokensMessage } from "./components/NoTokensMessage";
 
 // This is the Hardhat Network id, you might change it in the hardhat.config.js.
 // If you are using MetaMask, be sure to change the Network id to 1337.
