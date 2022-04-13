@@ -19,6 +19,26 @@ import { TransactionErrorMessage } from "./components/TransactionErrorMessage";
 import { WaitingForTransactionMessage } from "./components/WaitingForTransactionMessage";
 import { NoTokensMessage } from "./components/NoTokensMessage";
 
+import 'antd/dist/antd.css';
+import Topnavmenu from './components/Topnavmenu';
+
+import { Layout } from 'antd';
+
+import {
+  Link, BrowserRouter as Router, Route, Routes
+} from "react-router-dom";
+
+
+import { Menu } from 'antd';
+import Swap from "./pages/Swap";
+import Pool from "./pages/Pool";
+import Dashboard from "./pages/Dashboard";
+import DRupee from "./pages/dRupee";
+
+const { Header, Content, Footer } = Layout;
+
+
+
 // This is the Hardhat Network id, you might change it in the hardhat.config.js.
 // If you are using MetaMask, be sure to change the Network id to 1337.
 // Here's a list of network ids https://docs.metamask.io/guide/ethereum-provider.html#properties
@@ -85,80 +105,47 @@ export class App extends React.Component {
 
     // If the token data or the user's balance hasn't loaded yet, we show
     // a loading component.
-    if (!this.state.tokenData || !this.state.balance) {
-      return <Loading />;
-    }
+    // if (!this.state.tokenData || !this.state.balance) {
+    //   return <Loading />;
+    // }
 
     // If everything is loaded, we render the application.
     return (
-      <div className="container p-4">
-        <div className="row">
-          <div className="col-12">
-            <h1>
-              {this.state.tokenData.name} ({this.state.tokenData.symbol})
-            </h1>
-            <p>
-              Welcome <b>{this.state.selectedAddress}</b>, you have{" "}
-              <b>
-                {this.state.balance.toString()} {this.state.tokenData.symbol}
-              </b>
-              .
-            </p>
-          </div>
-        </div>
+      <Layout className="layout">
 
-        <hr />
+        <Router>
 
-        <div className="row">
-          <div className="col-12">
-            {/* 
-              Sending a transaction isn't an immediate action. You have to wait
-              for it to be mined.
-              If we are waiting for one, we show a message here.
-            */}
-            {this.state.txBeingSent && (
-              <WaitingForTransactionMessage txHash={this.state.txBeingSent} />
-            )}
+          <Header>
+            <div className="logo" />
+            <Topnavmenu />
+          </Header>
 
-            {/* 
-              Sending a transaction can fail in multiple ways. 
-              If that happened, we show a message here.
-            */}
-            {this.state.transactionError && (
-              <TransactionErrorMessage
-                message={this._getRpcErrorMessage(this.state.transactionError)}
-                dismiss={() => this._dismissTransactionError()}
-              />
-            )}
-          </div>
-        </div>
+          {/* <Routes> */}
+            <Route path="/swap" component={Swap}>
+            </Route>
+            <Route path="/pool" component={Pool}>
+            </Route>
+            <Route path="/drupee" component={DRupee}>
+            </Route>
+            <Route path="/dashboard" component={Dashboard}>
+            </Route>
+          {/* </Routes> */}
 
-        <div className="row">
-          <div className="col-12">
-            {/*
-              If the user has no tokens, we don't show the Transfer form
-            */}
-            {this.state.balance.eq(0) && (
-              <NoTokensMessage selectedAddress={this.state.selectedAddress} />
-            )}
+          
 
-            {/*
-              This component displays a form that the user can use to send a 
-              transaction and transfer some tokens.
-              The component doesn't have logic, it just calls the transferTokens
-              callback.
-            */}
-            {this.state.balance.gt(0) && (
-              <Transfer
-                transferTokens={(to, amount) =>
-                  this._transferTokens(to, amount)
-                }
-                tokenSymbol={this.state.tokenData.symbol}
-              />
-            )}
-          </div>
-        </div>
-      </div>
+
+
+        </Router>
+
+
+
+
+        <Footer style={{ textAlign: 'center' }}>RexSwap ©2022 Created by INVINCIBLES</Footer>
+
+
+      </Layout>
+
+
     );
   }
 
