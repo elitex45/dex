@@ -2,6 +2,10 @@ import React from "react";
 
 import { Content } from "antd/lib/layout/layout";
 
+import { Row, Col } from "antd";
+import Pricegraph from "../components/Pricegraph";
+import Swapcomp from "../components/Swapcomp";
+
 class Swap extends React.Component {
     render() {
         return (
@@ -13,7 +17,18 @@ class Swap extends React.Component {
             height: '500px',
             padding: '24px',
             background: '#fff'
-          }}>SWAP</div>
+          }}>
+            SWAP
+          <Row>
+            <Col span={14} style={{background:'#1ac'}}>
+              <Pricegraph/>
+            </Col>
+            <Col span={10} style={{background:'#1ccc5b'}}>
+              <Swapcomp/>
+            </Col>
+          </Row>
+            
+            </div>
 
         </Content>
         );
