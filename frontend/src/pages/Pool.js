@@ -1,6 +1,7 @@
 import React from "react";
 
 import { Content } from "antd/lib/layout/layout";
+import Poolcomp from "../components/Poolcomp";
 
 class Pool extends React.Component {
     render() {
@@ -13,7 +14,10 @@ class Pool extends React.Component {
             height: '500px',
             padding: '24px',
             background: '#fff'
-          }}>POOL</div>
+          }}>
+            
+            POOL
+            </div>
 
         </Content>
         );

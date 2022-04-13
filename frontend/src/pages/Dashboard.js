@@ -13,7 +13,9 @@ class Dashboard extends React.Component {
             height: '500px',
             padding: '24px',
             background: '#fff'
-          }}>DASHBOARD</div>
+          }}>
+            DASHBOARD
+            </div>
 
         </Content>
         );

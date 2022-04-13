@@ -13,7 +13,9 @@ class DRupee extends React.Component {
             height: '500px',
             padding: '24px',
             background: '#fff'
-          }}>dRupee</div>
+          }}>
+            dRupee
+          </div>
 
         </Content>
         );
