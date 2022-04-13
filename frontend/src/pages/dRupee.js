@@ -5,7 +5,6 @@ import { InfoCircleOutlined, UserOutlined } from '@ant-design/icons';
 import { Button, Space } from 'antd';
 import { PoweroffOutlined } from '@ant-design/icons';
 import axios from "axios";
-import Tokenize from "../components/Tokenize";
 import { Card } from 'antd';
 
 const gridStyle = {
@@ -22,7 +21,8 @@ class dRupee extends Component {
             amount: null,
             loadings: [],
             order: null,
-            successData: null
+            successData: null,
+            dexcon: this.props.dexcon
         }
     }
 
@@ -32,27 +32,10 @@ class dRupee extends Component {
 
     enterLoading = async (index, e) => {
         e.preventDefault();
-        this.setState(({ loadings }) => {
-            const newLoadings = [...loadings];
-            newLoadings[index] = true;
-
-            return {
-                loadings: newLoadings,
-            };
-        });
-        setTimeout(() => {
-            this.setState(({ loadings }) => {
-                const newLoadings = [...loadings];
-                newLoadings[index] = false;
-
-                return {
-                    loadings: newLoadings,
-                };
-            });
-        }, 6000);
+        console.log(this.state.dexcon)
 
         const obj = {
-            amount: this.state.amount
+            amount: this.state.amount * 100
         }
 
         function loadScript(src) {
@@ -110,10 +93,6 @@ class dRupee extends Component {
 
                     console.log(result.data)
 
-                    this.setState({
-                        successData: result.data
-                    })
-
                 },
                 prefill: {
                     name: "Akshay S P",
@@ -128,7 +107,21 @@ class dRupee extends Component {
         displayRazorpay()
 
 
+        // let res = await this.state.dexcon.tokenize(parseInt(this.state.amount), this.state.successData.digest, this.state.successData.signature)
+        // let result = await res.wait()
+
+        // console.log(result)
+        //await this.toke()
     };
+
+    toke = async (e) => {
+        e.preventDefault()
+        console.log("result")
+        let res = await this.state.dexcon.tokenize(parseInt(this.state.amount), "abcd", "abcd")
+        let result = await res.wait()
+
+        console.log(result)
+    }
 
     render() {
         const { loadings } = this.state;
@@ -152,6 +145,9 @@ class dRupee extends Component {
                             <Space style={{ width: '100%', height: "20%" }}>
                                 <Button type="primary" loading={loadings[0]} onClick={(e) => this.enterLoading(0, e)}>
                                     Tokenize
+                                </Button>
+                                <Button id="btn1" type="primary" loading={loadings[0]} onClick={(e) => this.toke(e)}>
+                                    Claim
                                 </Button>
                             </Space>
 

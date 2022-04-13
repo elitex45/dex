@@ -5,8 +5,10 @@ import { ethers } from "ethers";
 
 // We import the contract's artifacts and address here, as we are going to be
 // using them with ethers
-import TokenArtifact from "./contracts/Token.json";
-import contractAddress from "./contracts/contract-address.json";
+import TokenArtifact from "./contracts/Dex.json";
+import contractAddress from "./contracts/Dex-address.json";
+import Drupee from "./contracts/Drupee.json";
+import DrupeeAdd from "./contracts/Drupee-address.json"
 
 // All the logic of this dapp is contained in the App component.
 // These other components are just presentational ones: they don't have any
@@ -33,31 +35,16 @@ import { Menu } from 'antd';
 import Swap from "./pages/Swap";
 import Pool from "./pages/Pool";
 import Dashboard from "./pages/Dashboard";
-import DRupee from "./pages/dRupee";
+import DRupeeComp from "./pages/dRupee";
+import Mint_Drupee from "./pages/Mint_Drupee";
 
 const { Header, Content, Footer } = Layout;
 
-
-
-// This is the Hardhat Network id, you might change it in the hardhat.config.js.
-// If you are using MetaMask, be sure to change the Network id to 1337.
-// Here's a list of network ids https://docs.metamask.io/guide/ethereum-provider.html#properties
-// to use when deploying to other networks.
 const HARDHAT_NETWORK_ID = '31337';
 
 // This is an error code that indicates that the user canceled a transaction
 const ERROR_CODE_TX_REJECTED_BY_USER = 4001;
 
-// This component is in charge of doing these things:
-//   1. It connects to the user's wallet
-//   2. Initializes ethers and the Token contract
-//   3. Polls the user balance to keep it updated.
-//   4. Transfers tokens by sending transactions
-//   5. Renders the whole application
-//
-// Note that (3) and (4) are specific of this sample application, but they show
-// you how to keep your App and contract's state in sync,  and how to send a
-// transaction.
 export class App extends React.Component {
   constructor(props) {
     super(props);
@@ -74,6 +61,8 @@ export class App extends React.Component {
       txBeingSent: undefined,
       transactionError: undefined,
       networkError: undefined,
+      dexcon: undefined,
+      drucon: undefined
     };
 
     this.state = this.initialState;
@@ -86,13 +75,6 @@ export class App extends React.Component {
       return <NoWalletDetected />;
     }
 
-    // The next thing we need to do, is to ask the user to connect their wallet.
-    // When the wallet gets connected, we are going to save the users's address
-    // in the component's state. So, if it hasn't been saved yet, we have
-    // to show the ConnectWallet component.
-    //
-    // Note that we pass it a callback that is going to be called when the user
-    // clicks a button. This callback just calls the _connectWallet method.
     if (!this.state.selectedAddress) {
       return (
         <ConnectWallet
@@ -103,13 +85,7 @@ export class App extends React.Component {
       );
     }
 
-    // If the token data or the user's balance hasn't loaded yet, we show
-    // a loading component.
-    // if (!this.state.tokenData || !this.state.balance) {
-    //   return <Loading />;
-    // }
 
-    // If everything is loaded, we render the application.
     return (
       <Layout className="layout">
 
@@ -125,14 +101,16 @@ export class App extends React.Component {
           </Route>
           <Route exact path="/pool" component={Pool}>
           </Route>
-          <Route exact path="/drupee" component={DRupee}>
+          <Route exact path="/drupee" component={() => <DRupeeComp dexcon={this.state.dexcon} />}>
           </Route>
-          <Route exact path="/dashboard" component={Dashboard}>
+          <Route exact path="/dashboard" component={() => <Dashboard dexcon={this.state.dexcon} />}>
+          </Route>
+          <Route exact path="/mint" component={() => <Mint_Drupee drucon={this.state.drucon} />}>
           </Route>
           {/* </Routes> */}
         </Router>
         <Footer style={{ textAlign: 'center', background: '#060004' }}>
-          <p style={{color:'white'}}> 
+          <p style={{ color: 'white' }}>
             RexSwap ©2022 Created by INVINCIBLES
 
           </p>
@@ -196,10 +174,22 @@ export class App extends React.Component {
 
     // Then, we initialize the contract using that provider and the token's
     // artifact. You can do this same thing with your contracts.
-    this._token = new ethers.Contract(
-      contractAddress.Token,
+    let dexcon = new ethers.Contract(
+      contractAddress.name,
       TokenArtifact.abi,
       this._provider.getSigner(0)
     );
+    this.setState({
+      dexcon: dexcon
+    })
+
+    let drucon = new ethers.Contract(
+      DrupeeAdd.name,
+      Drupee.abi,
+      this._provider.getSigner(0)
+    );
+    this.setState({
+      drucon: drucon
+    })
   }
 }

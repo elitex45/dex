@@ -7,10 +7,15 @@ require("./tasks/faucet");
 
 // If you are using MetaMask, be sure to change the chainId to 1337
 module.exports = {
-  solidity: "0.7.3",
+  solidity: "0.8.0",
   networks: {
     hardhat: {
       chainId: 31337
+    },
+    ganache: {
+      url: "HTTP://127.0.0.1",
+      port: 7545,
+      network_id: "5777"
     }
   }
 };
