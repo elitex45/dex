@@ -24,6 +24,7 @@ router.post("/orders", async (req, res) => {
         if (!order) return res.status(200).json({ error: "Some error occured while creating an order" });
 
         res.json(order);
+
     } catch (error) {
         res.status(500).send(error);
     }
@@ -58,8 +59,8 @@ router.post("/success", async (req, res) => {
 
         res.json({
             msg: "Transaction is Successful",
-            orderId: razorpayOrderId,
-            paymentId: razorpayPaymentId,
+            digest: digest,
+            razorpaySignature: razorpaySignature,
         });
 
     } catch (error) {
