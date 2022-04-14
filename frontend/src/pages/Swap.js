@@ -11,7 +11,9 @@ import { Card } from 'antd';
 const gridStyle = {
   width: '75%',
   height:'400px',
-  margin: '0 auto'
+  margin: '0 auto',
+  background:'#ededed',
+  borderRadius:'20px'
 };
 
 class Swap extends React.Component {
@@ -45,11 +47,11 @@ class Swap extends React.Component {
           width: '100%',
           height: '500px',
           padding: '24px',
-          background: 'radial-gradient(#23001e, #060004)'
+          background: '#bdbdbd'
         }}>
           
           <Row>
-            <Col span={14} style={{ background: '#1ac' }}>
+            <Col span={14}>
               <Card style={gridStyle}>
                 <Pricegraph />
               </Card>

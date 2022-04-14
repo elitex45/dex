@@ -15,20 +15,20 @@ const gridStyle = {
   width: '75%',
   height: '400px',
   margin: '0 auto',
-  background: '#470030',
-  border: '0',
-  borderRadius:'30px'
+  background: '#ededed',
+  borderRadius:'10px'
 };
 
 const selincss = {
   marginBottom: '20px',
-  marginTop: '20px'
+  marginTop: '20px',
+  padding:'10px',
 };
 
 const divcenter = {
   margin: '0',
   position: 'absolute',
-  top: '30%'
+  top: '30%',
 }
 
 // const sel = {
@@ -86,14 +86,14 @@ class Pool extends React.Component {
           width: '100%',
           height: '500px',
           padding: '24px',
-          background: 'radial-gradient(#23001e, #060004)'
+          background: '#bdbdbd'
         }}>
 
-          <Row style={{ margin: '0 auto' }}>
+          <Row >
             <Col span={10} >
 
                 <Card style={gridStyle}>
-                  <h1 style={{ textAlign: 'center', color: 'white' }}>DEPOSIT</h1>
+                  <h1 style={{ textAlign: 'center'}}>DEPOSIT</h1>
                   <div style={divcenter}>
                     <Select
                       labelInValue
@@ -122,7 +122,7 @@ class Pool extends React.Component {
             <Col span={10}>
 
               <Card style={gridStyle}>
-                <h1 style={{ textAlign: 'center', color: 'white' }}>WITHDRAW</h1>
+                <h1 style={{ textAlign: 'center'}}>WITHDRAW</h1>
                 <div style={divcenter}>
                   <Select
                     labelInValue
@@ -139,13 +139,6 @@ class Pool extends React.Component {
               </Card>
             </Col>
           </Row>
-
-
-
-
-
-
-
 
         </div>
 

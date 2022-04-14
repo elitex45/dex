@@ -9,8 +9,16 @@ import { Card } from 'antd';
 
 const gridStyle = {
     width: '75%',
-    margin: '0 auto'
+    margin: '0 auto',
+    background:'#ededed',
+    borderRadius:'20px'
 };
+
+const selincss = {
+    marginBottom: '20px',
+    marginTop: '20px',
+    padding:'10px',
+  };
 
 const { Header, Content, Footer } = Layout;
 
@@ -133,17 +141,24 @@ class dRupee extends Component {
                         width: '100%',
                         height: '500px',
                         padding: '24px',
-                        background: '#fff'
+                        background: '#bdbdbd'
                     }}>
 
                         <Card style={gridStyle}>
 
+                        <h1>
+                                Tokenize
+                            </h1>
+                            <p>
+                                Rupee to dRupee
+                            </p>
+
 
                             <div>
-                                <Input id="amount" prefix="₹" placeholder="Enter Rupee To Tokenize" suffix="RMB" onChange={(e) => this.onChange(e)} value={this.state.amount} />
+                                <Input id="amount" prefix="₹" placeholder="Enter Rupee To Tokenize" suffix="RMB" onChange={(e) => this.onChange(e)} value={this.state.amount} style={selincss}/>
                             </div>
                             <Space style={{ width: '100%', height: "20%" }}>
-                                <Button type="primary" loading={loadings[0]} onClick={(e) => this.enterLoading(0, e)}>
+                                <Button type="primary" loading={loadings[0]} onClick={(e) => this.enterLoading(0, e)} >
                                     Tokenize
                                 </Button>
                                 <Button id="btn1" type="primary" loading={loadings[0]} onClick={(e) => this.toke(e)}>
