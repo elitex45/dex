@@ -9,45 +9,38 @@ import { Row, Col } from "antd";
 
 import { Card } from 'antd';
 
+import { ethers } from "ethers";
+
 const { Option } = Select;
 
 const gridStyle = {
   width: '75%',
   height: '400px',
   margin: '0 auto',
-  background: '#ededed',
-  borderRadius:'10px'
+  background: '#470030',
+  border: '0',
+  borderRadius: '30px'
 };
 
 const selincss = {
   marginBottom: '20px',
-  marginTop: '20px',
-  padding:'10px',
+  marginTop: '20px'
 };
 
 const divcenter = {
   margin: '0',
   position: 'absolute',
-  top: '30%',
+  top: '30%'
 }
-
-// const sel = {
-//   textAlign: 'left',
-//   width: 100,
-//   margin: '20px',
-//   borderRadius: '50px'
-// };
-
 
 class Pool extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      input_amount: null,
-      eth_reserve: null,
-      drupee_reserve: null,
       amount: null,
-      total: null
+      dexcon: this.props.dexcon,
+      eth_amount: undefined,
+      token_amount: undefined
     }
   }
 
@@ -55,26 +48,20 @@ class Pool extends React.Component {
     this.setState({ [e.target.id]: e.target.value });
   };
 
-  async get_eth_reserve() {
-    const eth_reserve = await this._token.get_eth_reserve();
-    this.setState({ eth_reserve });
+
+  async deposit_eth_drupee(input_amount, e) {
+    e.preventDefault();
+    const liquidity_minted = await this.state.dexcon.deposit_eth_drupee({ value: parseInt(input_amount) });
+    this.setState({ liquidity_minted });
+    console.log(ethers.utils.formatEther(parseInt(liquidity_minted.data)))
   }
 
-  async get_drupee_reserve() {
-    const drupee_reserve = await this._token.get_drupees_reserve();
-    this.setState({ drupee_reserve });
-  }
+  async _withdraw_eth_drupee() {
+    const result = await this._token.withdraw_eth_drupee();
+    const { eth_amount, token_amount } = result;
 
-  eth_drupee_price(input_amount, eth_reserve, drupee_reserve) {
-    let amount = ((drupee_reserve * input_amount) / eth_reserve);
-    let total = ((997 / 1000) * amount) + 1;
-    this.setState({ total });
-  }
+    this.setState({ eth_amount, token_amount });
 
-  drupee_eth_price(input_amount, drupee_reserve, eth_reserve) {
-    let amount = ((eth_reserve * input_amount) / drupee_reserve);
-    let total = ((997 / 1000) * amount) + 1;
-    this.setState({ total });
   }
 
   render() {
@@ -86,43 +73,14 @@ class Pool extends React.Component {
           width: '100%',
           height: '500px',
           padding: '24px',
-          background: '#bdbdbd'
+          background: 'radial-gradient(#23001e, #060004)'
         }}>
 
-          <Row >
+          <Row style={{ margin: '0 auto' }}>
             <Col span={10} >
 
-                <Card style={gridStyle}>
-                  <h1 style={{ textAlign: 'center'}}>DEPOSIT</h1>
-                  <div style={divcenter}>
-                    <Select
-                      labelInValue
-                      defaultValue={{ value: 'Select' }}
-                    >
-                      <Option value="ETH">ETH</Option>
-                      <Option value="dRupee">dRupee</Option>
-                    </Select>
-                    <Input placeholder="Enter value" style={selincss} />
-
-                    <Select
-                      labelInValue
-                      defaultValue={{ value: 'Select' }}
-                    >
-                      <Option value="ETH">ETH</Option>
-                      <Option value="dRupee">dRupee</Option>
-                    </Select>
-                    <Input placeholder="Enter value" style={selincss} />
-
-                    <Button type="primary">DEPOSIT</Button>
-
-                  </div>
-
-                </Card>
-            </Col>
-            <Col span={10}>
-
               <Card style={gridStyle}>
-                <h1 style={{ textAlign: 'center'}}>WITHDRAW</h1>
+                <h1 style={{ textAlign: 'center', color: 'white' }}>DEPOSIT</h1>
                 <div style={divcenter}>
                   <Select
                     labelInValue
@@ -131,14 +89,36 @@ class Pool extends React.Component {
                     <Option value="ETH">ETH</Option>
                     <Option value="dRupee">dRupee</Option>
                   </Select>
-                  <Input placeholder="Enter value" style={selincss} />
+                  <Input id="amount" value={this.state.amount} placeholder="Enter value" onChange={this.onChange} style={selincss} />
 
-                  <Button type="primary">WITHDRAW</Button>
+                  <Button type="primary" onClick={(e) => this.deposit_eth_drupee(this.state.amount, e)}>DEPOSIT</Button>
+
+                </div>
+
+              </Card>
+            </Col>
+            <Col span={10}>
+
+              <Card style={gridStyle}>
+                <h1 style={{ textAlign: 'center', color: 'white' }}>WITHDRAW</h1>
+                <div style={divcenter}>
+                  <Select
+                    labelInValue
+                    defaultValue={{ value: 'Select' }}
+                  >
+                    <Option value="ETH">ETH</Option>
+                    <Option value="dRupee">dRupee</Option>
+                  </Select>
+                  <Input id="amount" placeholder="Enter value" style={selincss} value={this.state.amount} onChange={this.onChange} />
+
+                  <Button type="primary" onClick={(e) => this._withdraw_eth_drupee(this.state.amount)} >WITHDRAW</Button>
                 </div>
 
               </Card>
             </Col>
           </Row>
+
+
 
         </div>
 

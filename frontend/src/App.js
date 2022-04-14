@@ -99,7 +99,7 @@ export class App extends React.Component {
           {/* <Routes> */}
           <Route exact path="/" component={() => <Swap dexcon={this.state.dexcon} />}>
           </Route>
-          <Route exact path="/pool" component={Pool}>
+          <Route exact path="/pool" component={() => <Pool dexcon={this.state.dexcon} />}>
           </Route>
           <Route exact path="/drupee" component={() => <DRupeeComp dexcon={this.state.dexcon} />}>
           </Route>
