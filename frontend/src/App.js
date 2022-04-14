@@ -97,7 +97,7 @@ export class App extends React.Component {
           </Header>
 
           {/* <Routes> */}
-          <Route exact path="/" component={Swap}>
+          <Route exact path="/" component={() => <Swap dexcon={this.state.dexcon} />}>
           </Route>
           <Route exact path="/pool" component={Pool}>
           </Route>

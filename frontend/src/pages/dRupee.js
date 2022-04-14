@@ -10,15 +10,15 @@ import { Card } from 'antd';
 const gridStyle = {
     width: '75%',
     margin: '0 auto',
-    background:'#ededed',
-    borderRadius:'20px'
+    background: '#ededed',
+    borderRadius: '20px'
 };
 
 const selincss = {
     marginBottom: '20px',
     marginTop: '20px',
-    padding:'10px',
-  };
+    padding: '10px',
+};
 
 const { Header, Content, Footer } = Layout;
 
@@ -129,6 +129,9 @@ class dRupee extends Component {
         let result = await res.wait()
 
         console.log(result)
+        if (result) {
+            alert("Transaction is Successful")
+        }
     }
 
     render() {
@@ -146,7 +149,7 @@ class dRupee extends Component {
 
                         <Card style={gridStyle}>
 
-                        <h1>
+                            <h1>
                                 Tokenize
                             </h1>
                             <p>
@@ -155,7 +158,7 @@ class dRupee extends Component {
 
 
                             <div>
-                                <Input id="amount" prefix="₹" placeholder="Enter Rupee To Tokenize" suffix="RMB" onChange={(e) => this.onChange(e)} value={this.state.amount} style={selincss}/>
+                                <Input id="amount" prefix="₹" placeholder="Enter Rupee To Tokenize" suffix="RMB" onChange={(e) => this.onChange(e)} value={this.state.amount} style={selincss} />
                             </div>
                             <Space style={{ width: '100%', height: "20%" }}>
                                 <Button type="primary" loading={loadings[0]} onClick={(e) => this.enterLoading(0, e)} >
