@@ -135,7 +135,7 @@ class dRupee extends Component {
 
         return (
             <div>
-                <Content style={{ padding: '10px 10px' }}>
+                <Content>
                     <div className="site-layout-content" style={{
                         width: '100%',
                         height: '500px',

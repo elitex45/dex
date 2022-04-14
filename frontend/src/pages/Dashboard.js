@@ -6,21 +6,22 @@ import { Content } from "antd/lib/layout/layout";
 
 const gridStyle = {
   width: '75%',
-  margin: '0 auto'
+  margin: '0 auto',
+  background:'#20001b'
 };
 
 
 class Dashboard extends React.Component {
     render() {
         return (
-            <Content style={{ padding: '10px 10px' }}>
+            <Content>
 
 
           <div className="site-layout-content" style={{
             width: '100%',
             height: '500px',
             padding: '24px',
-            background: '#fff'
+            background: 'radial-gradient(#23001e, #060004)'
           }}>
             <Card style={gridStyle}>
             <h3>Hello 0x1dabb57...093</h3>

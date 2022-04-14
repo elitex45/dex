@@ -131,7 +131,12 @@ export class App extends React.Component {
           </Route>
           {/* </Routes> */}
         </Router>
-        <Footer style={{ textAlign: 'center' }}>RexSwap ©2022 Created by INVINCIBLES</Footer>
+        <Footer style={{ textAlign: 'center', background: '#060004' }}>
+          <p style={{color:'white'}}> 
+            RexSwap ©2022 Created by INVINCIBLES
+
+          </p>
+        </Footer>
 
 
       </Layout>

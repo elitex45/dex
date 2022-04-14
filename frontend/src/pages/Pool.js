@@ -5,24 +5,38 @@ import { Content } from "antd/lib/layout/layout";
 import { Button, Select } from 'antd';
 import { Input } from 'antd';
 
+import { Row, Col } from "antd";
+
 import { Card } from 'antd';
 
 const { Option } = Select;
 
 const gridStyle = {
-  width: '50%',
+  width: '75%',
   height: '400px',
   margin: '0 auto',
-  background: 'radial-gradient(#23001e, #13000f)',
-  border: '0'
+  background: '#470030',
+  border: '0',
+  borderRadius:'30px'
 };
 
-const sel = {
-  textAlign: 'left',
-  width: 100,
-  margin: '20px',
-  borderRadius: '50px'
+const selincss = {
+  marginBottom: '20px',
+  marginTop: '20px'
 };
+
+const divcenter = {
+  margin: '0',
+  position: 'absolute',
+  top: '30%'
+}
+
+// const sel = {
+//   textAlign: 'left',
+//   width: 100,
+//   margin: '20px',
+//   borderRadius: '50px'
+// };
 
 
 class Pool extends React.Component {
@@ -75,29 +89,62 @@ class Pool extends React.Component {
           background: 'radial-gradient(#23001e, #060004)'
         }}>
 
-          <Card style={gridStyle}>
-            <Select
-              labelInValue
-              defaultValue={{ value: 'Select' }}
-              style={sel}
-            >
-              <Option value="ETH">ETH</Option>
-              <Option value="dRupee">dRupee</Option>
-            </Select>
-            <Input placeholder="Enter value" />
+          <Row style={{ margin: '0 auto' }}>
+            <Col span={10} >
 
-            <Select
-              labelInValue
-              defaultValue={{ value: 'Select' }}
-              style={sel}
-            >
-              <Option value="ETH">ETH</Option>
-              <Option value="dRupee">dRupee</Option>
-            </Select>
-            <Input placeholder="Enter value" />
+                <Card style={gridStyle}>
+                  <h1 style={{ textAlign: 'center', color: 'white' }}>DEPOSIT</h1>
+                  <div style={divcenter}>
+                    <Select
+                      labelInValue
+                      defaultValue={{ value: 'Select' }}
+                    >
+                      <Option value="ETH">ETH</Option>
+                      <Option value="dRupee">dRupee</Option>
+                    </Select>
+                    <Input placeholder="Enter value" style={selincss} />
 
-            <Button type="primary">SWAP</Button>
-          </Card>
+                    <Select
+                      labelInValue
+                      defaultValue={{ value: 'Select' }}
+                    >
+                      <Option value="ETH">ETH</Option>
+                      <Option value="dRupee">dRupee</Option>
+                    </Select>
+                    <Input placeholder="Enter value" style={selincss} />
+
+                    <Button type="primary">DEPOSIT</Button>
+
+                  </div>
+
+                </Card>
+            </Col>
+            <Col span={10}>
+
+              <Card style={gridStyle}>
+                <h1 style={{ textAlign: 'center', color: 'white' }}>WITHDRAW</h1>
+                <div style={divcenter}>
+                  <Select
+                    labelInValue
+                    defaultValue={{ value: 'Select' }}
+                  >
+                    <Option value="ETH">ETH</Option>
+                    <Option value="dRupee">dRupee</Option>
+                  </Select>
+                  <Input placeholder="Enter value" style={selincss} />
+
+                  <Button type="primary">WITHDRAW</Button>
+                </div>
+
+              </Card>
+            </Col>
+          </Row>
+
+
+
+
+
+
 
 
         </div>
