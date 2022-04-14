@@ -32,7 +32,7 @@ class Swap extends React.Component {
       tokens_bought: null,
       dexcon: this.props.dexcon,
       output_amount: undefined,
-      input_amount: 0,
+      input_amount: undefined,
       total: undefined,
       eth_reserve: undefined,
       drupee_reserve: undefined
@@ -76,12 +76,15 @@ class Swap extends React.Component {
     this.setState({ drupee_reserve });
   }
 
-  async eth_to_drupee() {
-    console.log("Swap", this.state.output_amount)
-    let res = await this.state.dexcon.ethTodrupee({ value: parseInt(this.state.input_amount) });
+  async eth_to_drupee(e, input_amount) {
+    e.preventDefault()
+
+    console.log("Swap", input_amount)
+    let res = await this.state.dexcon.ethTodrupee({ value: parseInt(input_amount) });
     let result = await res.wait()
+    console.log(result)
     //this.setState({ tokens_bought });
-    alert("Swapped ")
+    alert("Swapped " + input_amount + " Eth")
   }
 
   async drupee_to_eth() {
@@ -149,7 +152,7 @@ class Swap extends React.Component {
                   <Input id="output_amount" placeholder="Enter value" style={selincss} value={this.state.output_amount} />
                   <p style={{ textAlign: 'right' }}>0.03% Fee only</p>
 
-                  <Button type="primary" onClick={this.eth_to_drupee}>SWAP</Button>
+                  <Button type="primary" onClick={(e) => this.eth_to_drupee(e, this.state.input_amount)}>SWAP</Button>
 
                 </div>
               </Card>

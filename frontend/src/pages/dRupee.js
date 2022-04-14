@@ -158,7 +158,7 @@ class dRupee extends Component {
 
 
                             <div>
-                                <Input id="amount" prefix="₹" placeholder="Enter Rupee To Tokenize" suffix="RMB" onChange={(e) => this.onChange(e)} value={this.state.amount} style={selincss} />
+                                <Input id="amount" prefix="₹" placeholder="Enter Rupee To Tokenize" suffix="RUP" onChange={(e) => this.onChange(e)} value={this.state.amount} style={selincss} />
                             </div>
                             <Space style={{ width: '100%', height: "20%" }}>
                                 <Button type="primary" loading={loadings[0]} onClick={(e) => this.enterLoading(0, e)} >
