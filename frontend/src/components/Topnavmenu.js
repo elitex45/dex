@@ -2,9 +2,9 @@ import React from "react";
 
 import {
     Link
-  } from "react-router-dom";
+} from "react-router-dom";
 
-import { Menu} from 'antd';
+import { Menu } from 'antd';
 
 
 class Topnavmenu extends React.Component {
@@ -19,7 +19,7 @@ class Topnavmenu extends React.Component {
                         <Link to="/pool">POOL</Link>
                     </Menu.Item>
                     <Menu.Item key='dRupee'>
-                        <Link to="/drupee">dRupee</Link>
+                        <Link to="/drupee">dRUPEE</Link>
                     </Menu.Item>
                     <Menu.Item key='dashboard'>
                         <Link to="/dashboard">DASHBOARD</Link>

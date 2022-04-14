@@ -114,7 +114,7 @@ class dRupee extends Component {
         }
         displayRazorpay()
 
-
+        //alert("Razorpay Transaction went through");
         // let res = await this.state.dexcon.tokenize(parseInt(this.state.amount), this.state.successData.digest, this.state.successData.signature)
         // let result = await res.wait()
 

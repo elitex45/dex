@@ -10,6 +10,7 @@ import { Row, Col } from "antd";
 import { Card } from 'antd';
 
 import { ethers } from "ethers";
+import { Redirect } from "react-router-dom";
 
 const { Option } = Select;
 
@@ -103,7 +104,7 @@ class Pool extends React.Component {
                     defaultValue={{ value: 'Select' }}
                   >
                     <Option value="ETH">ETH</Option>
-                    <Option value="dRupee">dRupee</Option>
+                    {/* <Option value="dRupee">dRupee</Option> */}
                   </Select>
                   <Input id="amount" value={this.state.amount} placeholder="Enter value" onChange={this.onChange} style={selincss} />
 
@@ -123,7 +124,7 @@ class Pool extends React.Component {
                     defaultValue={{ value: 'Select' }}
                   >
                     <Option value="ETH">ETH</Option>
-                    <Option value="dRupee">dRupee</Option>
+                    {/* <Option value="dRupee">dRupee</Option> */}
                   </Select>
                   <Input id="with_amount" placeholder="Enter value" style={selincss} value={this.state.with_amount} onChange={this.onChange} />
 
@@ -133,15 +134,6 @@ class Pool extends React.Component {
               </Card>
             </Col>
           </Row>
-
-          <div style={{ margin: '0 auto' }}>
-            <h1>
-              {this.state.deposited ? this.state.deposited : ""}
-            </h1>
-          </div>
-
-
-
         </div>
 
       </Content>

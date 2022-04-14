@@ -63,7 +63,7 @@ class Dashboard extends React.Component {
 
             </Card>
             <Card>
-              <h5 onClick={() => this.get_deposits(this.state.userAddress)} style={{ textAlign: 'left', float: 'left' }}>Total Deposits: </h5>
+              <h5 onClick={() => this.get_deposits(this.state.userAddress)} style={{ textAlign: 'left', float: 'left' }}>Total Pool Value: </h5>
               <h3 style={{ textAlign: 'right', float: 'right' }}>{this.state.deposited} (dRupee+ETH)</h3>
             </Card>
             <Card>
