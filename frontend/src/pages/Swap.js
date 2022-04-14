@@ -10,6 +10,7 @@ import { Card } from 'antd';
 
 const gridStyle = {
   width: '75%',
+  height:'400px',
   margin: '0 auto'
 };
 
@@ -46,7 +47,7 @@ class Swap extends React.Component {
           padding: '24px',
           background: '#fff'
         }}>
-          SWAP
+          
           <Row>
             <Col span={14} style={{ background: '#1ac' }}>
               <Card style={gridStyle}>
@@ -55,6 +56,7 @@ class Swap extends React.Component {
             </Col>
             <Col span={10}>
               <Card style={gridStyle}>
+                <h1 style={{textAlign: 'center'}}>SWAP</h1>
                 <Swapcomp />
               </Card>
             </Col>

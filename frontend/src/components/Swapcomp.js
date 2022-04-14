@@ -5,6 +5,11 @@ import { Input } from 'antd';
 
 const { Option } = Select;
 
+const selincss = {
+    marginBottom:'20px',
+    marginTop:'20px'
+}
+
 class Swapcomp extends React.Component {
     render() {
         return (
@@ -17,7 +22,7 @@ class Swapcomp extends React.Component {
                     <Option value="ETH">ETH</Option>
                     <Option value="dRupee">dRupee</Option>
                 </Select>
-                <Input placeholder="Enter value" />
+                <Input placeholder="Enter value" style={selincss}/>
 
                 <Select
                     labelInValue
@@ -27,7 +32,8 @@ class Swapcomp extends React.Component {
                     <Option value="ETH">ETH</Option>
                     <Option value="dRupee">dRupee</Option>
                 </Select>
-                <Input placeholder="Enter value" />
+                <Input placeholder="Enter value" style={selincss}/>
+                <p style={{textAlign:'right'}}>0.03% Fee only</p>
 
                 <Button type="primary">SWAP</Button>
 
