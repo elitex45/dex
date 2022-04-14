@@ -103,7 +103,7 @@ export class App extends React.Component {
           </Route>
           <Route exact path="/drupee" component={() => <DRupeeComp dexcon={this.state.dexcon} />}>
           </Route>
-          <Route exact path="/dashboard" component={() => <Dashboard dexcon={this.state.dexcon} />}>
+          <Route exact path="/dashboard" component={() => <Dashboard dexcon={this.state.dexcon} addr={this.state.selectedAddress} />}>
           </Route>
           <Route exact path="/mint" component={() => <Mint_Drupee drucon={this.state.drucon} />}>
           </Route>

@@ -84,7 +84,7 @@ class Swap extends React.Component {
     let result = await res.wait()
     console.log(result)
     //this.setState({ tokens_bought });
-    alert("Swapped " + input_amount + " Eth")
+    alert("Swapped " + input_amount + "Eth")
   }
 
   async drupee_to_eth() {
@@ -116,8 +116,10 @@ class Swap extends React.Component {
 
         <div className="site-layout-content" style={{
           width: '100%',
-          height: '500px',
+          height: '82vh',
           padding: '24px',
+          //paddingLeft: '12rem',
+          paddingTop: '8rem',
           background: '#bdbdbd'
         }}>
 

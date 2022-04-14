@@ -142,8 +142,9 @@ class dRupee extends Component {
                 <Content>
                     <div className="site-layout-content" style={{
                         width: '100%',
-                        height: '500px',
+                        height: '82vh',
                         padding: '24px',
+                        paddingTop: '12rem',
                         background: '#bdbdbd'
                     }}>
 

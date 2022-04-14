@@ -17,7 +17,7 @@ const gridStyle = {
   width: '75%',
   height: '400px',
   margin: '0 auto',
-  background: '#470030',
+  background: '#ededed',
   border: '0',
   borderRadius: '30px'
 };
@@ -81,16 +81,18 @@ class Pool extends React.Component {
       <Content>
         <div className="site-layout-content" style={{
           width: '100%',
-          height: '500px',
+          height: '82vh',
           padding: '24px',
-          background: 'radial-gradient(#23001e, #060004)'
+          paddingLeft: '12rem',
+          paddingTop: '8rem',
+          background: '#bdbdbd'
         }}>
 
           <Row style={{ margin: '0 auto' }}>
             <Col span={10} >
 
               <Card style={gridStyle}>
-                <h1 style={{ textAlign: 'center', color: 'white' }}>DEPOSIT</h1>
+                <h1 style={{ textAlign: 'center', color: 'black' }}>DEPOSIT</h1>
                 <div style={divcenter}>
                   <Select
                     labelInValue
@@ -110,7 +112,7 @@ class Pool extends React.Component {
             <Col span={10}>
 
               <Card style={gridStyle}>
-                <h1 style={{ textAlign: 'center', color: 'white' }}>WITHDRAW</h1>
+                <h1 style={{ textAlign: 'center', color: 'black' }}>WITHDRAW</h1>
                 <div style={divcenter}>
                   <Select
                     labelInValue
