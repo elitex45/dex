@@ -6,6 +6,8 @@ import "@openzeppelin/contracts/utils/math/SafeMath.sol";
 
 contract Dex {
     using SafeMath for uint256;
+    mapping(address => uint256) public volumetraded;
+
     uint256 public totalLiquidity;
     mapping(address => uint256) public liquidity;
 
@@ -104,7 +106,14 @@ contract Dex {
         require(drupee.transfer(msg.sender, tokens_bought));
         console.log("Token_bought", drupees_reserve);
         console.log("msg.sender", msg.sender);
+
+        volumetraded[msg.sender] += msg.value;
+
         return tokens_bought;
+    }
+
+    function get_volumetraded(address user) public view returns (uint256) {
+        return volumetraded[user];
     }
 
     function ethTodai() public payable returns (uint256) {

@@ -25,6 +25,10 @@ class Dashboard extends React.Component {
 
   }
 
+  componentDidMount() {
+    //this.get_deposits(this.state.userAddress);
+  }
+
   async get_volumetraded(addr) {
     let volumetraded = await this.state.dexcon.get_volumetraded(addr);
     volumetraded = parseInt(volumetraded);
@@ -33,6 +37,7 @@ class Dashboard extends React.Component {
 
   async get_deposits(addr) {
     let deposited = await this.state.dexcon.totaldeposit_eth_drupee(addr);
+    deposited = parseInt(deposited);
     this.setState({
       deposited: deposited
     });
@@ -42,8 +47,6 @@ class Dashboard extends React.Component {
   render() {
     return (
       <Content>
-
-
 
         <div className="site-layout-content" style={{
           width: '100%',

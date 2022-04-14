@@ -60,15 +60,19 @@ class Pool extends React.Component {
     console.log(ethers.utils.formatEther(parseInt(liquidity_minted.data)))
     alert("Successfully Deposited " + input_amount)
     let deposited = await this.state.dexcon.totaldeposit_eth_drupee(this.state.selectedAddress);
+    deposited = parseInt(deposited)
     this.setState({
       deposited: deposited
     });
   }
 
-  async withdraw_eth_drupee(with_amount) {
+  async withdraw_eth_drupee(with_amount, e) {
+    e.preventDefault();
     const result = await this.state.dexcon.withdraw_eth_drupee(with_amount);
     console.log(result)
     let deposited = await this.state.dexcon.totaldeposit_eth_drupee(this.state.selectedAddress);
+    alert("Successfully Withdrawn ")
+    deposited = parseInt(deposited)
     this.setState({
       deposited: deposited
     });
@@ -123,7 +127,7 @@ class Pool extends React.Component {
                   </Select>
                   <Input id="with_amount" placeholder="Enter value" style={selincss} value={this.state.with_amount} onChange={this.onChange} />
 
-                  <Button type="primary" onClick={(e) => this.withdraw_eth_drupee(parseInt(this.state.with_amount))} >WITHDRAW</Button>
+                  <Button type="primary" onClick={(e) => this.withdraw_eth_drupee(parseInt(this.state.with_amount), e)} >WITHDRAW</Button>
                 </div>
 
               </Card>

@@ -99,13 +99,13 @@ class Swap extends React.Component {
     }
     console.log("calc", this.state.drupee_reserve, input_amount, this.state.eth_reserve)
     let amount = ((this.state.drupee_reserve * input_amount) / this.state.eth_reserve);
-    let total = ((997 / 1000) * amount) + 1;
+    let total = ((997 / 1000) * amount);
     this.setState({ total });
   }
 
   drupee_eth_price(input_amount, drupee_reserve, eth_reserve) {
     let amount = ((eth_reserve * input_amount) / drupee_reserve);
-    let total = ((997 / 1000) * amount) + 1;
+    let total = ((997 / 1000) * amount);
     this.setState({ total });
   }
 
