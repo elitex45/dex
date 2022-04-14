@@ -99,7 +99,7 @@ export class App extends React.Component {
           {/* <Routes> */}
           <Route exact path="/" component={() => <Swap dexcon={this.state.dexcon} />}>
           </Route>
-          <Route exact path="/pool" component={() => <Pool dexcon={this.state.dexcon} />}>
+          <Route exact path="/pool" component={() => <Pool dexcon={this.state.dexcon} addr={this.state.selectedAddress} />}>
           </Route>
           <Route exact path="/drupee" component={() => <DRupeeComp dexcon={this.state.dexcon} />}>
           </Route>
@@ -179,6 +179,7 @@ export class App extends React.Component {
       TokenArtifact.abi,
       this._provider.getSigner(0)
     );
+
     this.setState({
       dexcon: dexcon
     })

@@ -217,7 +217,11 @@ contract Dex {
         return (eth_amount, token_amount);
     }
 
-    function totaldeposit_eth_drupee(address user) public returns (uint256) {
+    function totaldeposit_eth_drupee(address user)
+        public
+        view
+        returns (uint256)
+    {
         console.log("liquidity of this user", liquidity[user]);
         return eth_drupe_liquidity[user];
     }

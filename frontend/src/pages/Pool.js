@@ -40,35 +40,45 @@ class Pool extends React.Component {
       amount: null,
       dexcon: this.props.dexcon,
       eth_amount: undefined,
-      token_amount: undefined
+      token_amount: undefined,
+      with_amount: undefined,
+      deposited: 0,
+      selectedAddress: this.props.addr
+
     }
   }
+
 
   onChange = e => {
     this.setState({ [e.target.id]: e.target.value });
   };
-
 
   async deposit_eth_drupee(input_amount, e) {
     e.preventDefault();
     const liquidity_minted = await this.state.dexcon.deposit_eth_drupee({ value: parseInt(input_amount) });
     this.setState({ liquidity_minted });
     console.log(ethers.utils.formatEther(parseInt(liquidity_minted.data)))
+    alert("Successfully Deposited " + input_amount)
+    let deposited = await this.state.dexcon.totaldeposit_eth_drupee(this.state.selectedAddress);
+    this.setState({
+      deposited: deposited
+    });
   }
 
-  async _withdraw_eth_drupee() {
-    const result = await this._token.withdraw_eth_drupee();
-    const { eth_amount, token_amount } = result;
-
-    this.setState({ eth_amount, token_amount });
+  async withdraw_eth_drupee(with_amount) {
+    const result = await this.state.dexcon.withdraw_eth_drupee(with_amount);
+    console.log(result)
+    let deposited = await this.state.dexcon.totaldeposit_eth_drupee(this.state.selectedAddress);
+    this.setState({
+      deposited: deposited
+    });
+    //this.setState({ eth_amount, token_amount });
 
   }
 
   render() {
     return (
       <Content>
-
-
         <div className="site-layout-content" style={{
           width: '100%',
           height: '500px',
@@ -109,14 +119,20 @@ class Pool extends React.Component {
                     <Option value="ETH">ETH</Option>
                     <Option value="dRupee">dRupee</Option>
                   </Select>
-                  <Input id="amount" placeholder="Enter value" style={selincss} value={this.state.amount} onChange={this.onChange} />
+                  <Input id="with_amount" placeholder="Enter value" style={selincss} value={this.state.with_amount} onChange={this.onChange} />
 
-                  <Button type="primary" onClick={(e) => this._withdraw_eth_drupee(this.state.amount)} >WITHDRAW</Button>
+                  <Button type="primary" onClick={(e) => this.withdraw_eth_drupee(parseInt(this.state.with_amount))} >WITHDRAW</Button>
                 </div>
 
               </Card>
             </Col>
           </Row>
+
+          <div style={{ margin: '0 auto' }}>
+            <h1>
+              {this.state.deposited ? this.state.deposited : ""}
+            </h1>
+          </div>
 
 
 
