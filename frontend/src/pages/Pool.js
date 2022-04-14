@@ -11,26 +11,32 @@ import { Card } from 'antd';
 const { Option } = Select;
 
 const gridStyle = {
-  width: '75%',
-  margin: '0 auto'
+  width: '50%',
+  height:'400px',
+  margin: '0 auto',
+  background: 'radial-gradient(#23001e, #13000f)',
+  border:'0'
 };
 
 const sel = {
   textAlign: 'left',
-  width: 120
+  width: 100,
+  margin:'20px',
+  borderRadius:'50px'
 };
+
 
 class Pool extends React.Component {
   render() {
     return (
-      <Content style={{ padding: '10px 10px' }}>
+      <Content>
 
 
         <div className="site-layout-content" style={{
           width: '100%',
           height: '500px',
           padding: '24px',
-          background: '#fff'
+          background: 'radial-gradient(#23001e, #060004)'
         }}>
 
           <Card style={gridStyle}>
